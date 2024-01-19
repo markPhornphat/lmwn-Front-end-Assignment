@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="resturantID">ResturantName</label>
+      <select name="resturantID" id="resturantID">
+        <option value="567051">ร้านลืมเคี้ยว</option>
+        <option value="227018">Ekkamai Macchiato - Home Brewer</option>
+      </select>
+      <br /><br />
+      <input type="submit" onclick="submitForm()" value="Submit" id="Submit" />
+    </form>
+
+    <script>
+      let select = document.getElementById("resturantID");
+      select.addEventListener("change", () => {
+        console.log(select.value);
+      });
+
+      function submitForm() {
+        let form = document.getElementById("myForm");
+        form.action = `https://us-central1-wongnai-frontend-assignment.cloudfunctions.net/api/restaurants/${select.value}.json`;
+      }
+    </script>
+  </body>
+</html>
