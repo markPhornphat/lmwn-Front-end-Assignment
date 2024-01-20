@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Header from "./header/Header";
 import getRestaurantInfo from "../../api-gateway/hooks/getRestaurantInfo";
+import FlatList from "flatlist-react/lib";
+import MenuSection from "./menus/MenuSection";
 
 interface dataProp {
   name: string;
@@ -15,28 +17,27 @@ interface dataProp {
 
 function App() {
   const restuarantId = 567051;
-  const [data, setData] = useState<dataProp | {}>({});
+  const [data, setData] = useState({}); //<dataProp | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getRestaurantInfo(restuarantId, setData, setIsLoading);
+    getRestaurantInfo(data, restuarantId, setData, setIsLoading);
+    console.log(data);
   }, []);
 
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p>
-      ) : (
         <>
-          {data ? (
-            <>
-              <h1>{data.coverImage}</h1>
-              <Header image={data.coverImage} />
-            </>
-          ) : (
-            <p>Data is null or undefined</p>
-          )}
+          <p>Loading...</p>
         </>
+      ) : (
+        <div>
+          {console.log("Finish Fetching")}
+          {/* {console.log(data)} */}
+          <Header image={data.coverImage} />
+          <MenuSection data={data} />
+        </div>
       )}
     </div>
   );

@@ -3,22 +3,25 @@ import axios from "axios";
 
 //Server ==> HTTP and Express (On top HTTP)
 const app: Application = express(); //Create a server (localhost but can't listen)
-const port = 3001;
+const port = 8080;
+const cors = require("cors");
 
+app.use(cors());
 const apiUrl =
   "https://us-central1-wongnai-frontend-assignment.cloudfunctions.net/api/restaurants/";
 
 app.use(express.json()); //เพื่อเข้าถึง req.body
 app.use(express.urlencoded({ extended: true })); //To encode the body in HTML element with POST
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
+
 app.get("/", (req, res) =>
   res.send(
     "<b>567051 (ร้านลืมเคี้ยว)<br>" +
@@ -36,7 +39,7 @@ app.get("/api/restaurants/:resID", async (req, res) => {
   try {
     const resDataAPI = await axios.get(`${apiUrl}${requestID}.json`);
     const resData = resDataAPI.data;
-
+    // console.log(resData);
     res.json(resData);
   } catch (error: any) {
     console.error(

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const getRestaurantInfo = async (
+  data: any,
   restaurantId: number,
   setData: React.Dispatch<React.SetStateAction<object>>,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -9,13 +10,14 @@ const getRestaurantInfo = async (
   setIsLoading(true);
   try {
     const response = await axios.get(
-      `http://localhost:3001/api/restaurants/${restaurantId}`
+      `http://localhost:8080/api/restaurants/${restaurantId}`
     );
 
     if (response.status === 200) {
       result = response.data;
-      setIsLoading(false);
       setData(result);
+      setIsLoading(false);
+      // console.log(result);
     } else {
       throw new Error("Network response was not ok");
     }
