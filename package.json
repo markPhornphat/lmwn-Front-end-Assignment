@@ -1,15 +1,17 @@
 {
-	"name": "root",
-	"private": true,
-	"devDependencies": {
-		"lerna": "^4.0.0"
-	},
-	"workspaces": {
-		"packages": [
-			"packages/**"
-		]
-	},
-	"dependencies": {
-		"axios": "^1.6.5"
-	}
+  "name": "root",
+  "private": true,
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/**"
+    ]
+  },
+  "dependencies": {
+    "axios": "^1.6.5",
+    "form-data": "^4.0.0"
+  }
 }

@@ -10,7 +10,15 @@ const apiUrl =
 
 app.use(express.json()); //เพื่อเข้าถึง req.body
 app.use(express.urlencoded({ extended: true })); //To encode the body in HTML element with POST
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.get("/", (req, res) =>
   res.send(
     "<b>567051 (ร้านลืมเคี้ยว)<br>" +
