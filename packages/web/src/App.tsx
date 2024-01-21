@@ -21,8 +21,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getRestaurantInfo(data, restuarantId, setData, setIsLoading);
-    console.log(data);
+    getRestaurantInfo(restuarantId, setData, setIsLoading);
   }, []);
 
   return (

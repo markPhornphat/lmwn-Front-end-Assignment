@@ -6,30 +6,20 @@ const app: Application = express(); //Create a server (localhost but can't liste
 const port = 8080;
 const cors = require("cors");
 
-app.use(cors());
+app.use(cors()); //For let front-end side (port:3000) able to fetch the data from port:8080
 const apiUrl =
   "https://us-central1-wongnai-frontend-assignment.cloudfunctions.net/api/restaurants/";
 
 app.use(express.json()); //เพื่อเข้าถึง req.body
 app.use(express.urlencoded({ extended: true })); //To encode the body in HTML element with POST
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "http://localhost:");
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
 
 app.get("/", (req, res) =>
   res.send(
     "<b>567051 (ร้านลืมเคี้ยว)<br>" +
-      "227018 (Ekkamai Macchiato - Home Brewer)<br>" +
-      "Duo B หมูสามชั้นคั่วพริกกระเทียมไข่ดาว + กะเพราหมูสับไข่ดาว <br><br></b>" +
-      "End point for restaurant http://localhost:3001/api/restaurants/227018 and http://localhost:3001/api/restaurants/567051<br>" +
-      "End point for short menus localhost:3001/api/restaurants/:restaurantId/shortMenus/:menuName<br>" +
-      "End point for full menus localhost:3001/api/restaurants/:restaurantId/fullMenus/:menuName "
+      "227018 (Ekkamai Macchiato - Home Brewer)<br><br>" +
+      "End point for restaurant http://localhost:8080/api/restaurants/:restaurantID<br>" +
+      "End point for short menus localhost:8080/api/restaurants/:restaurantId/shortMenus/:menuName<br>" +
+      "End point for full menus localhost:8080/api/restaurants/:restaurantId/fullMenus/:menuName "
   )
 );
 

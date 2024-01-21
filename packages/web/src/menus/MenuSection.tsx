@@ -1,9 +1,7 @@
 import React from "react";
+import ListGroup from "./ListGroup";
 
 const MenuSection = ({ data }: any) => {
-  // const data1 = data.menus.map((menuItem) => menuItem);
-  // console.log(data1);
-  console.log(data);
   return (
     <div
       style={{
@@ -13,9 +11,17 @@ const MenuSection = ({ data }: any) => {
       }}
     >
       <h1>{data.name}</h1>
-      <ul>
-        {data != null ? data.menus.map((item: any) => <li>{item}</li>) : null}
-      </ul>
+      <ListGroup data={data} />
+      {/* <ul>
+        {data != null
+          ? data.map((item: any, index: any) => (
+              <div>
+                <img src={item.coverImage} />
+                {item.menus}
+              </div>
+            ))
+          : null}
+      </ul> */}
     </div>
   );
 };
